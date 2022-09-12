@@ -25,7 +25,7 @@ recordRoutes.route("/record").get(function (req, res) {
 
 // This section will help you get a single record by id
 recordRoutes.route("/record/:id").get(function (req, res) {
-  let db_connect = dbo.getDb();
+  let db_connect = dbo.getDb("shoppieDB");
   let myquery = { _id: ObjectId(req.params.id) };
   db_connect.collection("products").findOne(myquery, function (err, result) {
     if (err) throw err;
@@ -51,7 +51,7 @@ recordRoutes.route("/record/add").post(function (req, response) {
 
 // // This section will help you update a record by id.
 recordRoutes.route("/update/:id").post(function (req, response) {
-  let db_connect = dbo.getDb();
+  let db_connect = dbo.getDb(shoppieDB);
   let myquery = { _id: ObjectId(req.params.id) };
   let newvalues = {
     $set: {
